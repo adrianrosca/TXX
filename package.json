@@ -1,0 +1,14 @@
+{
+  "name": "txx-master-plan",
+  "version": "1.0.0",
+  "description": "TXX Master Plan - Google Drive sync",
+  "type": "module",
+  "scripts": {
+    "auth": "node scripts/drive/auth.js",
+    "sync": "node scripts/drive/sync.js",
+    "sync:dry": "node scripts/drive/sync.js --dry-run"
+  },
+  "dependencies": {
+    "googleapis": "^144.0.0"
+  }
+}

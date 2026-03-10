@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TXX — Arkitektur & Process</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .deck {
+      display: flex;
+      width: 300vw;
+      height: 100vh;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .slide {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 48px 72px;
+      flex-shrink: 0;
+    }
+
+    .slide-header {
+      margin-bottom: 40px;
+    }
+
+    .slide-number {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #8b949e;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 38px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+    }
+
+    .sub {
+      font-size: 16px;
+      color: #8b949e;
+      margin-top: 6px;
+    }
+
+    .slide-body {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── SLIDE 1 ── */
+    #slide-1 { border-top: 3px solid #238636; }
+    #slide-1 h1 { color: #e6edf3; }
+
+    .levels {
+      display: flex;
+      gap: 32px;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .level-card {
+      flex: 1;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 32px 28px;
+      position: relative;
+    }
+
+    .level-card .badge {
+      display: inline-block;
+      font-size: 28px;
+      font-weight: 800;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 52px;
+      margin-bottom: 16px;
+    }
+
+    .level-g .badge { background: #1a4d2e; color: #3fb950; border: 2px solid #238636; }
+    .level-y .badge { background: #4d3a00; color: #e3b341; border: 2px solid #9e6a03; }
+    .level-r .badge { background: #4d1010; color: #f85149; border: 2px solid #b91c1c; }
+
+    .level-card h3 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #e6edf3;
+    }
+
+    .level-card ul {
+      list-style: none;
+      font-size: 14px;
+      color: #8b949e;
+      line-height: 1.9;
+    }
+
+    .level-card ul li::before {
+      content: "— ";
+      color: #30363d;
+    }
+
+    .arrow-between {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: #8b949e;
+      font-size: 12px;
+      padding-top: 52px;
+    }
+
+    .arrow-between svg { opacity: 0.5; }
+
+    .rule-banner {
+      margin-top: 32px;
+      background: #1a0a0a;
+      border: 1px solid #6e1313;
+      border-radius: 8px;
+      padding: 14px 20px;
+      font-size: 13px;
+      color: #f85149;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── SLIDE 2 ── */
+    #slide-2 { border-top: 3px solid #1f6feb; }
+
+    .flow-wrap {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .flow-row {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .flow-step {
+      flex: 1;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 14px 16px;
+      text-align: center;
+    }
+
+    .flow-step .step-num {
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #8b949e;
+      margin-bottom: 4px;
+    }
+
+    .flow-step .step-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: #e6edf3;
+    }
+
+    .flow-step .step-who {
+      font-size: 12px;
+      color: #8b949e;
+      margin-top: 3px;
+    }
+
+    .flow-arrow {
+      font-size: 18px;
+      color: #30363d;
+      padding: 0 4px;
+      flex-shrink: 0;
+    }
+
+    .gate-box {
+      background: #1f1200;
+      border: 2px solid #e3b341;
+      border-radius: 10px;
+      padding: 16px 28px;
+      text-align: center;
+      align-self: center;
+    }
+
+    .gate-box .gate-label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #e3b341;
+      margin-bottom: 4px;
+    }
+
+    .gate-box .gate-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #e3b341;
+    }
+
+    .gate-box .gate-who {
+      font-size: 12px;
+      color: #8b949e;
+      margin-top: 4px;
+    }
+
+    .flow-center-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .mini-arrow-down {
+      display: flex;
+      justify-content: center;
+      color: #30363d;
+      font-size: 22px;
+    }
+
+    .rejected-note {
+      font-size: 12px;
+      color: #8b949e;
+      text-align: center;
+      margin-top: -4px;
+    }
+
+    /* ── SLIDE 3 ── */
+    #slide-3 { border-top: 3px solid #8957e5; }
+
+    .pipeline {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .pipe-row {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .pipe-block {
+      flex: 1;
+      padding: 18px 20px;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .pipe-block .pb-label {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    .pipe-block .pb-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #e6edf3;
+    }
+
+    .pipe-block .pb-items {
+      font-size: 12px;
+      color: #8b949e;
+      margin-top: 6px;
+      line-height: 1.7;
+      list-style: none;
+    }
+
+    .pipe-block .pb-items li::before { content: "· "; }
+
+    .pb-design { background: #0d2137; border: 1px solid #1f6feb; }
+    .pb-design .pb-label { color: #58a6ff; }
+
+    .pb-g { background: #0f2a18; border: 1px solid #238636; }
+    .pb-g .pb-label { color: #3fb950; }
+
+    .pb-y { background: #261d00; border: 1px solid #9e6a03; }
+    .pb-y .pb-label { color: #e3b341; }
+
+    .pb-r { background: #240a0a; border: 1px solid #b91c1c; }
+    .pb-r .pb-label { color: #f85149; }
+
+    .pipe-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 12px;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .pipe-arrow .pa-line {
+      width: 2px;
+      height: 32px;
+      background: #30363d;
+    }
+
+    .pipe-arrow .pa-tag {
+      font-size: 10px;
+      color: #8b949e;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 4px;
+      padding: 2px 6px;
+      white-space: nowrap;
+    }
+
+    .pipe-arrow .pa-arrow {
+      font-size: 16px;
+      color: #30363d;
+    }
+
+    .validate-badge {
+      display: inline-block;
+      font-size: 11px;
+      background: #1a1a2e;
+      border: 1px solid #8957e5;
+      color: #a371f7;
+      border-radius: 4px;
+      padding: 2px 8px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    /* nav */
+    .nav {
+      position: fixed;
+      bottom: 28px;
+      right: 48px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav button {
+      background: #161b22;
+      border: 1px solid #30363d;
+      color: #e6edf3;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .nav button:hover { background: #21262d; }
+    .nav button:disabled { opacity: 0.3; cursor: default; }
+
+    .nav .dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .nav .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #30363d;
+      transition: background 0.2s;
+    }
+
+    .nav .dot.active { background: #8b949e; }
+  </style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- ═══════════════════════════════════════════════════════ SLIDE 1 -->
+  <div class="slide" id="slide-1">
+    <div class="slide-header">
+      <div class="slide-number">01 / 03</div>
+      <h1>TXX &mdash; Tre säkerhetsnivåer</h1>
+      <div class="sub">Kod flödar åt ett håll: G &rarr; Y &rarr; R &nbsp;&nbsp;|&nbsp;&nbsp; Aldrig tillbaka</div>
+    </div>
+
+    <div class="slide-body">
+      <div style="width:100%; display:flex; flex-direction:column; gap:20px;">
+        <div class="levels">
+
+          <div class="level-card level-g">
+            <div class="badge">G</div>
+            <h3>Arkitektoniskt skal</h3>
+            <ul>
+              <li>Full internetåtkomst</li>
+              <li>Attrappdata &amp; mockade API:er</li>
+              <li>Alla UI-komponenter byggs här</li>
+              <li>CI/CD, testsvit, dokumentation</li>
+            </ul>
+          </div>
+
+          <div class="arrow-between">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12h14M13 6l6 6-6 6" stroke="#8b949e" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span>pull +<br/>overlay</span>
+          </div>
+
+          <div class="level-card level-y">
+            <div class="badge">Y</div>
+            <h3>Begränsad nivå</h3>
+            <ul>
+              <li>Godkänd verktygs&shy;lista</li>
+              <li>Riktiga Y-data&shy;källor</li>
+              <li>Verklig funktionslogik</li>
+              <li>Intern git-server</li>
+            </ul>
+          </div>
+
+          <div class="arrow-between">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12h14M13 6l6 6-6 6" stroke="#8b949e" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span>överförings&shy;paket</span>
+          </div>
+
+          <div class="level-card level-r">
+            <div class="badge">R</div>
+            <h3>Fullt system &mdash; luftgap</h3>
+            <ul>
+              <li>Ingen internetåtkomst</li>
+              <li>Alla klassificerade data</li>
+              <li>Lokal LLM (XAXA)</li>
+              <li>Intern git (luftgapad)</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="rule-banner">
+          REGEL: R-data och R-kod kan aldrig flöda tillbaka till Y eller G
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ SLIDE 2 -->
+  <div class="slide" id="slide-2">
+    <div class="slide-header">
+      <div class="slide-number">02 / 03</div>
+      <h1>UX-first &mdash; Designprocessen</h1>
+      <div class="sub">Ingen utveckling startar utan godkänd design</div>
+    </div>
+
+    <div class="slide-body">
+      <div class="flow-wrap" style="max-width:900px;">
+
+        <!-- Row 1: Steps 1–4 -->
+        <div class="flow-row">
+          <div class="flow-step">
+            <div class="step-num">01</div>
+            <div class="step-name">Krav</div>
+            <div class="step-who">PO + UX + intressenter</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="step-num">02</div>
+            <div class="step-name">Användar&shy;forskning</div>
+            <div class="step-who">UX-designer</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="step-num">03</div>
+            <div class="step-name">Wireframes</div>
+            <div class="step-who">UX-designer</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="step-num">04</div>
+            <div class="step-name">Interaktiv<br/>prototyp</div>
+            <div class="step-who">UX-designer</div>
+          </div>
+        </div>
+
+        <div class="mini-arrow-down">↓</div>
+
+        <!-- Row 2: Gate centered -->
+        <div class="flow-center-row">
+          <div style="font-size:12px;color:#8b949e;">← omarbetning vid behov</div>
+          <div class="gate-box">
+            <div class="gate-label">Godkännandeport</div>
+            <div class="gate-title">Design Review</div>
+            <div class="gate-who">UX-lead · PO · Teknikansvarig</div>
+          </div>
+          <div style="font-size:12px;color:#8b949e;"></div>
+        </div>
+
+        <div class="mini-arrow-down">↓ godkänd</div>
+
+        <!-- Row 3: Steps 5–7 -->
+        <div class="flow-row">
+          <div class="flow-step">
+            <div class="step-num">05</div>
+            <div class="step-name">Överlämning</div>
+            <div class="step-who">Designer → Utvecklare</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="step-num">06</div>
+            <div class="step-name">Utveck&shy;ling</div>
+            <div class="step-who">Utvecklare</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="step-num">07</div>
+            <div class="step-name">Design&shy;validering</div>
+            <div class="step-who">UX-designer</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step" style="background:#0f2a18;border-color:#238636;">
+            <div class="step-num" style="color:#3fb950;">KLAR</div>
+            <div class="step-name">Funktion<br/>levererad</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════ SLIDE 3 -->
+  <div class="slide" id="slide-3">
+    <div class="slide-header">
+      <div class="slide-number">03 / 03</div>
+      <h1>Från design till driftsättning</h1>
+      <div class="sub">Fullständigt leveransflöde per nivå</div>
+    </div>
+
+    <div class="slide-body">
+      <div style="display:flex;gap:24px;width:100%;align-items:flex-start;">
+
+        <!-- Column 1: Design -->
+        <div class="pipe-block pb-design" style="flex:1.1;">
+          <div class="pb-label">Design</div>
+          <div class="pb-title">Godkänd spec</div>
+          <ul class="pb-items">
+            <li>Annoterade skärmar</li>
+            <li>Komponentlista</li>
+            <li>Interaktionsspec</li>
+            <li>Datakrav &amp; API-kontrakt</li>
+          </ul>
+        </div>
+
+        <div class="pipe-arrow">
+          <div class="pa-line"></div>
+          <div class="pa-tag">överlämning</div>
+          <div class="pa-arrow">→</div>
+        </div>
+
+        <!-- Column 2: G -->
+        <div class="pipe-block pb-g" style="flex:1;">
+          <div class="pb-label">G-nivå</div>
+          <div class="pb-title">Bygge &amp; test</div>
+          <ul class="pb-items">
+            <li>Fullt UI med attrappdata</li>
+            <li>Alla komponenter i kodbasen</li>
+            <li>CI/CD kör tester</li>
+            <li>UX validerar <span class="validate-badge">✓ spec</span></li>
+          </ul>
+        </div>
+
+        <div class="pipe-arrow">
+          <div class="pa-line"></div>
+          <div class="pa-tag">pull + overlay</div>
+          <div class="pa-arrow">→</div>
+        </div>
+
+        <!-- Column 3: Y -->
+        <div class="pipe-block pb-y" style="flex:1;">
+          <div class="pb-label">Y-nivå</div>
+          <div class="pb-title">Riktiga data</div>
+          <ul class="pb-items">
+            <li>UI-kod från G återanvänds</li>
+            <li>Kopplas mot Y-datakällor</li>
+            <li>Y-specifik logik</li>
+            <li>Beroenden godkänns</li>
+          </ul>
+        </div>
+
+        <div class="pipe-arrow">
+          <div class="pa-line"></div>
+          <div class="pa-tag">överförings&shy;paket</div>
+          <div class="pa-arrow">→</div>
+        </div>
+
+        <!-- Column 4: R -->
+        <div class="pipe-block pb-r" style="flex:1;">
+          <div class="pb-label">R-nivå</div>
+          <div class="pb-title">Fullständigt system</div>
+          <ul class="pb-items">
+            <li>Alla klassificerade data</li>
+            <li>R-specifika funktioner</li>
+            <li>Lokal LLM (XAXA)</li>
+            <li>Driftsättning luftgap</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div><!-- /deck -->
+
+<!-- Navigation -->
+<div class="nav">
+  <button id="prev" onclick="go(-1)" disabled>← Föregående</button>
+  <div class="dots">
+    <div class="dot active" id="d0"></div>
+    <div class="dot" id="d1"></div>
+    <div class="dot" id="d2"></div>
+  </div>
+  <button id="next" onclick="go(1)">Nästa →</button>
+</div>
+
+<script>
+  let current = 0;
+  const total = 3;
+
+  function go(dir) {
+    current = Math.max(0, Math.min(total - 1, current + dir));
+    document.getElementById('deck').style.transform = `translateX(-${current * 100}vw)`;
+    document.getElementById('prev').disabled = current === 0;
+    document.getElementById('next').disabled = current === total - 1;
+    for (let i = 0; i < total; i++) {
+      document.getElementById('d' + i).classList.toggle('active', i === current);
+    }
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') go(1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') go(-1);
+  });
+</script>
+
+</body>
+</html>

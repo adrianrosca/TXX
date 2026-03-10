@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SW Review Process</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f0ece3;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+  h1 {
+    font-size: 11px;
+    color: #888;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .card {
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 6px 32px rgba(0,0,0,0.09);
+    padding: 36px 44px 44px;
+    width: 920px;
+    max-width: 100%;
+  }
+</style>
+</head>
+<body>
+
+<h1>Software Review Process</h1>
+
+<div class="card">
+<svg viewBox="0 0 830 520" width="100%" style="display:block;">
+  <defs>
+    <marker id="arr-dark" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2c3e50"/>
+    </marker>
+    <marker id="arr-teal" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#148f77"/>
+    </marker>
+    <marker id="arr-gray" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#999"/>
+    </marker>
+    <marker id="arr-teal-start" markerWidth="8" markerHeight="6" refX="0" refY="3" orient="auto">
+      <polygon points="8 0, 0 3, 8 6" fill="#148f77"/>
+    </marker>
+  </defs>
+
+  <!-- ══════════════════════════════════════════
+       LEGEND (top right)
+  ══════════════════════════════════════════ -->
+  <rect x="520" y="14" width="300" height="118" rx="8" fill="#f9f8f5" stroke="#ddd" stroke-width="1"/>
+  <text x="534" y="36" font-size="11.5" font-family="Segoe UI,sans-serif" fill="#333">
+    <tspan font-weight="700">CRP</tspan><tspan fill="#888">  = Change Request / Registration</tspan>
+  </text>
+  <text x="534" y="55" font-size="11.5" font-family="Segoe UI,sans-serif" fill="#333">
+    <tspan font-weight="700">SwPR</tspan><tspan fill="#888">  = Software Program Review</tspan>
+  </text>
+  <text x="534" y="74" font-size="11.5" font-family="Segoe UI,sans-serif" fill="#333">
+    <tspan font-weight="700">SwPDR</tspan><tspan fill="#888"> = SW Prelim. Design Review</tspan>
+  </text>
+  <text x="534" y="93" font-size="11.5" font-family="Segoe UI,sans-serif" fill="#333">
+    <tspan font-weight="700">SwAR</tspan><tspan fill="#888">  = SW Architecture Review</tspan>
+  </text>
+  <text x="534" y="112" font-size="11.5" font-family="Segoe UI,sans-serif" fill="#333">
+    <tspan font-weight="700">SwCDR</tspan><tspan fill="#888"> = SW Critical Design Review</tspan>
+  </text>
+
+  <!-- ══════════════════════════════════════════
+       CRP BLOCK (top left)
+  ══════════════════════════════════════════ -->
+  <text x="20" y="38" font-size="16" font-weight="700" font-family="Segoe UI,sans-serif" fill="#c0392b">CRP</text>
+  <text x="20" y="57" font-size="11.5" font-family="Segoe UI,sans-serif" fill="#999" font-style="italic">högnivå</text>
+  <text x="20" y="73" font-size="11.5" font-family="Segoe UI,sans-serif" fill="#999" font-style="italic">krav</text>
+
+  <!-- ══════════════════════════════════════════
+       STARG CTX ARROW  →  KICKOFF LINE
+       Kickoff vertical line: x=200, y=100–295
+  ══════════════════════════════════════════ -->
+
+  <!-- Arrow label -->
+  <text x="68" y="270" font-size="11" font-family="Segoe UI,sans-serif" fill="#aaa" font-style="italic">Starg Ctx</text>
+  <!-- Arrow line from CRP area to kickoff -->
+  <line x1="20" y1="282" x2="193" y2="282" stroke="#bbb" stroke-width="1.8" marker-end="url(#arr-gray)"/>
+
+  <!-- Kickoff vertical line (tall, from top above branches down through timeline) -->
+  <line x1="200" y1="96" x2="200" y2="295" stroke="#2c3e50" stroke-width="2.5"/>
+  <text x="200" y="89" font-size="12" font-weight="700" font-family="Segoe UI,sans-serif" fill="#2c3e50" text-anchor="middle">Kickoff</text>
+
+  <!-- ══════════════════════════════════════════
+       SwUI-PDR and SwDev-PDR BRANCHES
+       Both originate at top of kickoff line (200, 100)
+       SwUI-PDR  → goes upper-left  → arrow down-right to SwPDR (380, 288)
+       SwDev-PDR → goes upper-right → arrow down-left  to SwPDR (380, 288)
+  ══════════════════════════════════════════ -->
+
+  <!-- SwUI-PDR: from kickoff top going up-left, then arrow to SwPDR -->
+  <line x1="200" y1="100" x2="258" y2="130" stroke="#148f77" stroke-width="2" marker-end="url(#arr-teal)"/>
+  <!-- Actual line to SwPDR (380,288) -->
+  <line x1="258" y1="130" x2="374" y2="283" stroke="#148f77" stroke-width="2" marker-end="url(#arr-teal)"/>
+  <text x="213" y="128" font-size="12" font-weight="700" font-family="Segoe UI,sans-serif" fill="#148f77">SwUI-PDR</text>
+
+  <!-- SwDev-PDR: from kickoff top going up-right, then arrow to SwPDR -->
+  <line x1="200" y1="100" x2="330" y2="130" stroke="#148f77" stroke-width="2" marker-end="url(#arr-teal)"/>
+  <line x1="330" y1="130" x2="386" y2="283" stroke="#148f77" stroke-width="2" marker-end="url(#arr-teal)"/>
+  <text x="305" y="128" font-size="12" font-weight="700" font-family="Segoe UI,sans-serif" fill="#148f77">SwDev-PDR</text>
+
+  <!-- ══════════════════════════════════════════
+       MAIN TIMELINE
+       y=290, from x=200 to x=790 (arrow tip)
+       Milestones: SwPR=260, SwPDR=380, SwAR=530, SwCDR=680
+  ══════════════════════════════════════════ -->
+  <line x1="200" y1="290" x2="787" y2="290" stroke="#2c3e50" stroke-width="2" marker-end="url(#arr-dark)"/>
+
+  <!-- Tick marks -->
+  <line x1="260" y1="284" x2="260" y2="296" stroke="#2c3e50" stroke-width="2"/>
+  <line x1="380" y1="284" x2="380" y2="296" stroke="#2c3e50" stroke-width="2"/>
+  <line x1="530" y1="284" x2="530" y2="296" stroke="#2c3e50" stroke-width="2"/>
+  <line x1="680" y1="284" x2="680" y2="296" stroke="#2c3e50" stroke-width="2"/>
+
+  <!-- Milestone dots -->
+  <circle cx="260" cy="290" r="6" fill="white" stroke="#2c3e50" stroke-width="2.5"/>
+  <circle cx="380" cy="290" r="6" fill="white" stroke="#148f77" stroke-width="2.5"/>
+  <circle cx="530" cy="290" r="6" fill="white" stroke="#8e44ad" stroke-width="2.5"/>
+  <circle cx="680" cy="290" r="6" fill="white" stroke="#c0392b" stroke-width="2.5"/>
+
+  <!-- Milestone labels (below) -->
+  <text x="260" y="312" font-size="12" font-weight="700" font-family="Segoe UI,sans-serif" fill="#2c3e50" text-anchor="middle">SwPR</text>
+  <text x="260" y="326" font-size="9.5" font-family="Segoe UI,sans-serif" fill="#aaa" text-anchor="middle">Program Review</text>
+
+  <text x="380" y="312" font-size="12" font-weight="700" font-family="Segoe UI,sans-serif" fill="#148f77" text-anchor="middle">SwPDR</text>
+  <text x="380" y="326" font-size="9.5" font-family="Segoe UI,sans-serif" fill="#aaa" text-anchor="middle">Prelim. Design</text>
+
+  <text x="530" y="312" font-size="12" font-weight="700" font-family="Segoe UI,sans-serif" fill="#8e44ad" text-anchor="middle">SwAR</text>
+  <text x="530" y="326" font-size="9.5" font-family="Segoe UI,sans-serif" fill="#aaa" text-anchor="middle">Architecture</text>
+
+  <text x="680" y="312" font-size="12" font-weight="700" font-family="Segoe UI,sans-serif" fill="#c0392b" text-anchor="middle">SwCDR</text>
+  <text x="680" y="326" font-size="9.5" font-family="Segoe UI,sans-serif" fill="#aaa" text-anchor="middle">Critical Design</text>
+
+  <!-- Terminal X -->
+  <text x="800" y="296" font-size="16" font-weight="700" font-family="Segoe UI,sans-serif" fill="#2c3e50">✕</text>
+
+  <!-- UX review / demo note below SwAR -->
+  <line x1="530" y1="330" x2="530" y2="352" stroke="#8e44ad" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <text x="530" y="366" font-size="11" font-family="Segoe UI,sans-serif" fill="#8e44ad" font-style="italic" text-anchor="middle">UX review</text>
+  <text x="530" y="380" font-size="11" font-family="Segoe UI,sans-serif" fill="#8e44ad" font-style="italic" text-anchor="middle">demo</text>
+
+  <!-- ══════════════════════════════════════════
+       SWIM LANES
+       Lane height = 52px, starting at y=410
+       Lanes: Teknisk Ledning (y=410), UI/UX (y=462), Team (y=514) — but we draw as a combined block
+  ══════════════════════════════════════════ -->
+
+  <!-- Lane borders -->
+  <rect x="10" y="405" width="810" height="52" rx="0" fill="#fafafa" stroke="#e8e8e8" stroke-width="1"/>
+  <rect x="10" y="457" width="810" height="52" rx="0" fill="white" stroke="#e8e8e8" stroke-width="1"/>
+  <rect x="10" y="509" width="810" height="52" rx="0" fill="#fafafa" stroke="#e8e8e8" stroke-width="1"/>
+  <!-- Rounded corners on outer rect -->
+  <rect x="10" y="405" width="810" height="156" rx="8" fill="none" stroke="#ddd" stroke-width="1.5"/>
+  <!-- Dividers -->
+  <line x1="10" y1="457" x2="820" y2="457" stroke="#e8e8e8" stroke-width="1"/>
+  <line x1="10" y1="509" x2="820" y2="509" stroke="#e8e8e8" stroke-width="1"/>
+
+  <!-- Label column separator -->
+  <line x1="175" y1="405" x2="175" y2="561" stroke="#eee" stroke-width="1"/>
+
+  <!-- Lane labels -->
+  <text x="20" y="436" font-size="12" font-weight="600" font-family="Segoe UI,sans-serif" fill="#2c3e50">Teknisk Ledning</text>
+  <text x="20" y="488" font-size="12" font-weight="600" font-family="Segoe UI,sans-serif" fill="#2c3e50">UI / UX</text>
+  <text x="20" y="540" font-size="12" font-weight="600" font-family="Segoe UI,sans-serif" fill="#2c3e50">Team</text>
+
+  <!-- ── Teknisk Ledning: straight line ── -->
+  <line x1="178" y1="431" x2="790" y2="431" stroke="#1a6a9a" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="800" y="437" font-size="14" font-weight="700" font-family="Segoe UI,sans-serif" fill="#1a6a9a">✕</text>
+
+  <!-- ── UI/UX and Team: crossing lines ──
+       UI/UX starts at y=483 (top of its lane center), crosses DOWN to team lane, then back up
+       Team starts at y=535 (center of its lane), crosses UP to UI/UX lane center, then back down
+       Crossing point: x=490 (slightly past center)
+  ── -->
+
+  <!-- UI/UX line: starts center of UI/UX lane (y=483), curves down to cross Team lane (y=535) around x=490, back up to y=483 -->
+  <path d="M 178,483 C 300,483 350,483 430,483 C 460,483 470,535 490,535 C 510,535 520,483 560,483 L 790,483"
+        fill="none" stroke="#6c3483" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="800" y="489" font-size="14" font-weight="700" font-family="Segoe UI,sans-serif" fill="#6c3483">✕</text>
+
+  <!-- Team line: starts center of Team lane (y=535), curves UP to cross UI/UX lane (y=483) around x=490, back down to y=535 -->
+  <path d="M 178,535 C 300,535 350,535 430,535 C 460,535 470,483 490,483 C 510,483 520,535 560,535 L 790,535"
+        fill="none" stroke="#1a7a3a" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="800" y="541" font-size="14" font-weight="700" font-family="Segoe UI,sans-serif" fill="#1a7a3a">✕</text>
+
+</svg>
+</div>
+
+</body>
+</html>
