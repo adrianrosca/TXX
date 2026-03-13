@@ -77,15 +77,11 @@ If I'd give the same advice to any project, it doesn't belong in a skill.
 
 Match each signal to the appropriate target:
 
-- **General project rules** → `CLAUDE.md` (and sync to `copilot-instructions.md`)
+- **General project rules** → `CLAUDE.md`
 - **Skill-specific rules** → that Skill's `SKILL.md`
 - If 3+ related signals don't fit any existing file, propose a new Skill
 
 Prefer updating `CLAUDE.md` for rules that apply broadly across the codebase.
-
-### Syncing documentation
-
-When updating `CLAUDE.md`, also update `/dp/.github/copilot-instructions.md` with the same changes to keep both AI assistants aligned.
 
 ## Proposing changes
 

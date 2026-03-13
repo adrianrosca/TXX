@@ -1,31 +1,40 @@
 # TXX Architecture
 
-## Purpose
+This section covers the complete architectural blueprint for TXX. Architecture is organized into five focused areas that work together to form the full system.
 
-This document set defines the next-generation TXX system architecture built around **three restriction levels** (G, Y, R). Code flows from the least restricted environment to the most restricted, composing into a single application at the final stage.
+---
 
-**Tech stack:** .NET
+## Sections
 
-## Core Concept
+### [GYR Model](gyr-model/)
+The security-restriction model that underlies everything. Defines three levels (G, Y, R) with unidirectional code flow, DI override chains, repository strategy, and CI/CD pipeline including air-gap transfer.
+
+### [Vertical Slice Architecture](feature-slices/)
+How features are structured inside TXX. Each feature is a self-contained vertical slice (View → ViewModel → Command/Query → Domain → Infrastructure). A strong shared core provides cross-cutting building blocks to all slices.
+
+### [WPF Application](wpf-application/)
+The desktop frontend. Covers MVVM patterns, Prism module system, data binding strategy, and UI region composition — all mapped to the G/Y/R model.
+
+### [Data Layer](data-layer/)
+Persistence strategy. EF Core 8, repository pattern, unit of work, and database configuration per restriction level.
+
+### [Map / Carmenta](map-carmenta/)
+Integration of the Carmenta Engine map control. Abstracted behind `IMapService` so G runs with a mock, Y and R use real Carmenta data sources and classified layers.
+
+### [Security & Auth](security-auth/)
+Authentication, authorization, and the security model across levels. `ICurrentUser`, policy-based authorization, level-specific identity providers, and audit logging.
+
+---
+
+## Core Principle
+
+Every section follows the same pattern inherited from the GYR model:
 
 ```
-G code  →  Y code  →  R code  =  Full Application
+Interface defined in Txx.Core          ← contract, shared by all levels
+Mock implementation in Txx.Infrastructure.Mock   ← G-level (always registered)
+Real implementation in Txx.Infrastructure.Y      ← Y-level (replaces mock)
+Classified implementation in Txx.Infrastructure.R ← R-level (replaces Y)
 ```
 
-- **G** provides the architectural frame (mockup features, mockup data)
-- **Y** adds restricted features and data on top of G
-- **R** adds highly restricted features and data on top of Y
-
-No single level contains the full application. Only the composed R build is the complete product.
-
-## Documents
-
-Read in this order:
-
-| # | Document | Description |
-|---|----------|-------------|
-| 1 | [restriction-levels.md](restriction-levels.md) | G / Y / R definitions, rules, and boundaries |
-| 2 | [dotnet-architecture.md](dotnet-architecture.md) | .NET solution structure, DI strategy, config layering |
-| 3 | [layer-composition.md](layer-composition.md) | How G + Y + R compose into one running application |
-| 4 | [repo-strategy.md](repo-strategy.md) | Git repositories, branching, sync, and access control |
-| 5 | [ci-cd-pipeline.md](ci-cd-pipeline.md) | Continuous integration chain: G → Y → R |
+No section breaks this rule. G tests pass at Y and R. Code flows only downward: G → Y → R.

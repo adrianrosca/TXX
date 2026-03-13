@@ -5,7 +5,7 @@ description: SSH into any server and run commands
 
 ## Summary
 
-- SSH into dp/wp servers using encrypted SSH keys from dp-tools secrets
+- SSH into alphanode2 server using encrypted SSH keys from dp-brain secrets in alphanode2
 - Server inventory: ps-stage/prod, p2-stage/prod, dp-stage, cb-prod, etc.
 - Common ops: PM2 status/logs/restart, disk, memory, health check
 
@@ -38,7 +38,7 @@ See `servers/SKILL.md` for the full inventory with specs, roles, and PM2 apps.
 | cb-prod | 13.48.200.72 | ubuntu | /home/ubuntu | — | CB_SSH_KEY |
 | dp-app | 13.49.11.108 | ubuntu | — | dp-server | STAGE_EC2_SSH_KEY |
 | dp-jobs | 13.50.229.84 | ubuntu | — | job | STAGE_EC2_SSH_KEY |
-| dp-new-stage | 13.62.201.3 | ubuntu | — | fb-stage, p2-collect | STAGE_EC2_SSH_KEY |
+| stage.digitalplattform.dev | 13.62.201.3 | ubuntu | — | fb-stage, p2-collect | STAGE_EC2_SSH_KEY |
 
 ### wp servers
 
@@ -51,10 +51,10 @@ See `servers/SKILL.md` for the full inventory with specs, roles, and PM2 apps.
 | p2-prod / pop | 13.50.94.20 | ubuntu | STAGE_EC2_SSH_KEY |
 | dp-app | 13.49.11.108 | ubuntu | STAGE_EC2_SSH_KEY |
 | dp-jobs | 13.50.229.84 | ubuntu | STAGE_EC2_SSH_KEY |
-| dp-new-stage | 13.62.201.3 | ubuntu | STAGE_EC2_SSH_KEY |
+| stage.digitalplattform.dev | 13.62.201.3 | ubuntu | STAGE_EC2_SSH_KEY |
 | dp-vpn | 13.51.226.223 | ubuntu | STAGE_EC2_SSH_KEY |
 | cb-prod | 13.48.200.72 | ubuntu | CB_SSH_KEY |
-| alphanode2 | 13.51.91.179 | ubuntu | SSH_PRIVATE_KEY_RSA (wp/prod) |
+| alphanode2 | 13.51.91.179 | ubuntu | SSH_PRIVATE_KEY_RSA (wp/prod) | port 2222 |
 
 All AWS servers are in `eu-north-1` (Stockholm).
 
@@ -81,6 +81,8 @@ ssh-keygen -l -f /tmp/dp_ssh_key
 
 ```bash
 ssh -i /tmp/dp_ssh_key <user>@<ip>
+# alphanode2 uses port 2222:
+ssh -i /tmp/dp_ssh_key -p 2222 ubuntu@13.51.91.179
 ```
 
 For one-off commands:
