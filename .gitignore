@@ -1,3 +1,6 @@
+# Symlinked Claude skills from dp-brain
+.claude/skills/
+
 # Google OAuth credentials - never commit these
 credentials.json
 client_secret*.json
