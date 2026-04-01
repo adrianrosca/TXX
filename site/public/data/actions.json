@@ -1,0 +1,93 @@
+[
+  {
+    "id": 7,
+    "slug": "7_skicka_progress_nina",
+    "name": "skicka progress nina",
+    "status": "inprogress",
+    "files": [
+      {
+        "name": "email-draft.md",
+        "content": "# Email till Nina — Progress\n\n**Ämne:** Statusuppdatering — pågående spår\n\n---\n\nHej Nina,\n\nJag tänker att det kanske kan kännas lite spretigt att jag är inblandad i så många olika saker. Men som jag tänker, så hänger allting ihop — här kommer en sammanfattning av läget. 😊\n\n**Arkitektur**\n- Jag undersöker (med hjälp av David G) den friare gula miljön — vad vi kan och inte kan göra där.\n- Har pitchat en första draft av arkitektur \"master plan\" till arkitekt-teamet.\n- Nästa steg: bryta ut ett UI-bibliotek och ta fram en pytte-PoC som kan köras i både gul och grön miljö.\n- Tar fram en plan för hur arkitekturen ska samverka med UI/UX-organisationen.\n\n**UI/UX**\n- Organisationen börjar ta form.\n- En roadmap är framtagen.\n- Möte med teknisk ledning inbokat för att gå igenom den.\n\n**FFF-studie**\n- Har mottagit den interna studien från dem.\n- Kickoff är inbokad.\n\n**AI Workflow**\n- VU är beviljat.\n- Har bildat ett team med Andreas (projektledare), Markus U (koordinator), Erik W (Arboga) och David G (Arboga).\n- Vi bygger ett praktiskt arbetsflöde för att länka ihop SSSS + Continue/Cline + AI-agenter + TXX-kodbasen.\n- Undersöker genom Felix D (Combitech) möjligheterna för TXX att få tillgång till \"Wallenberg-molnet\" — massiva GPU-resurser.\n\n**Teamet**\n- Det går bra för våra rekryter!\n- Schemat för Master Classes och Micro Concepts rullar på.\n- Jag bidrar med arkitektur-hjälp i vissa paket.\n- Nikki har verkligen hittat hem i UI/UX-teamet.\n\nKort sagt — arkitektur, UX, FFF-studie, AI och teamutveckling. Fem spår som alla knyts ihop i master plan.\n\nHör gärna av dig om du behöver fördjupning i något.\n\n/ Adrian\n"
+      },
+      {
+        "name": "progress-draft.md",
+        "content": "# Progressrapport till Nina\n\n## Arkitektur\n\n- Undersöker den friare gula miljön — kartlägger vilka möjligheter och begränsningar som finns\n- Har pitchat första draft till arkitekt-teamet på arkitektur master plan\n- Ska bryta ut till UI-lib. Skapar PoC för att kunna köra i gul/grön miljö\n- Tar fram plan för hur arkitektur ska samverka med UI/UX-organisation\n\n## UI/UX\n\n- Organisation börjar ta form\n- Roadmap framtagen\n- Möte med teknisk ledning inbokat\n\n## FFF-studie\n\n- Har mottagit intern studie\n- Kickoff inbokad\n"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "slug": "8_kickoff_mss_dist_plan",
+    "name": "kickoff mss dist plan",
+    "status": "inprogress",
+    "files": [
+      {
+        "name": "meeting-notes.md",
+        "content": "# Mötesanteckningar — MSS / Distribuerad planeringsförmåga\n\n**Datum:** 2026-04-01\n\n## Tema\n\nTydlighet i MSS-användarflöden och distribuerad planeringsförmåga.\n\n## Nuläge\n\n- Behov och användarfeedback redan definierad (sedan tidigare)\n- Marcus Nibrandt / FMV har tagit fram underlag kring distribuerad planeringsförmåga\n- Sammanställning redan skickad\n- Nästa steg: kickoff\n\n## Öppna frågor\n\n- Har Nico genomfört sin genomgång? Status?\n- Direkt-till-er?\n- Input från Fredrik Olsson (fmv.se) och Marcus Nibrandt\n\n## Kickoff bör täcka\n\n- Status\n- Vad Nico gjort / var genomgången står\n- Sammanställning som redan skickats\n- Möjliga scenarier\n- Fokus på arbetssättet\n- Tid för planering och utvärdering\n- Visa användarresa / journey\n\n## Observationer\n\n- Förvänta inte fullt användbara användarflöden för distribuerad planförmåga ännu\n- Presentera möjliga scenarier, ta de idéer som kommer\n- Fokusera på DTU — tid för planering och utvärdering\n\n## Personer\n\n- **Fredrik Olsson** — fmv.se\n- **Marcus Nibrandt** — FMV, distribuerad planeringsförmåga\n- **Nico** — genomgång / status\n"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "slug": "1_Anders_nilsson_perf",
+    "name": "Anders nilsson perf",
+    "status": "planned",
+    "files": []
+  },
+  {
+    "id": 2,
+    "slug": "2_uiux_roadmap",
+    "name": "uiux roadmap",
+    "status": "planned",
+    "files": []
+  },
+  {
+    "id": 3,
+    "slug": "3_uiux_mote_teknisk_ledning",
+    "name": "uiux mote teknisk ledning",
+    "status": "planned",
+    "files": []
+  },
+  {
+    "id": 4,
+    "slug": "4_kickoff_fff",
+    "name": "kickoff fff",
+    "status": "planned",
+    "files": []
+  },
+  {
+    "id": 5,
+    "slug": "5_fff_teknikdok",
+    "name": "fff teknikdok",
+    "status": "planned",
+    "files": []
+  },
+  {
+    "id": 6,
+    "slug": "6_felix_wallenberg_ai",
+    "name": "felix wallenberg ai",
+    "status": "planned",
+    "files": []
+  },
+  {
+    "id": 10,
+    "slug": "10_statusmote_fff",
+    "name": "statusmote fff",
+    "status": "planned",
+    "files": []
+  },
+  {
+    "id": 11,
+    "slug": "11_kartlagg_mss_floeden",
+    "name": "kartlagg mss floeden",
+    "status": "planned",
+    "files": []
+  },
+  {
+    "id": 12,
+    "slug": "12_scenarier_dpf",
+    "name": "scenarier dpf",
+    "status": "planned",
+    "files": []
+  }
+]

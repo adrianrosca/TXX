@@ -1,11 +1,8 @@
 {
 	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"path": "../dp-brain"
-		}
-	],
+        {
+            "path": "."
+        }
+    ],
     "settings": {}
 }
