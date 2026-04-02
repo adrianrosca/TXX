@@ -27,7 +27,7 @@ Jag tänker att det kanske kan kännas lite spretigt att jag är inblandad i så
 - VU är beviljat.
 - Har bildat ett team med Andreas (projektledare), Markus U (koordinator), Erik W (Arboga) och David G (Arboga).
 - Vi bygger ett praktiskt arbetsflöde för att länka ihop SSSS + Continue/Cline + AI-agenter + TXX-kodbasen.
-- Undersöker genom Felix D (Combitech) möjligheterna för TXX att få tillgång till "Wallenberg-molnet" — massiva GPU-resurser.
+- Undersöker genom Felix D (Combitech) möjligheterna för TXX att få tillgång till "Sphere AI" — massiva GPU-resurser.
 
 **Teamet**
 - Det går bra för våra rekryter!
