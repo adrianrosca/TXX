@@ -26,15 +26,11 @@ const SYNC_PATHS = [
 
 const ALLOWED_EXTENSIONS = new Set(['.md', '.html', '.pdf', '.pptx', '.py', '.txt']);
 
-// ── Auth ──────────────────────────────────────────────────────────────────────
+// ── Auth (via dp-brain) ──────────────────────────────────────────────────────
 
-const credentials = JSON.parse(readFileSync(resolve(ROOT, 'credentials.json'), 'utf8'));
-const token = JSON.parse(readFileSync(resolve(ROOT, 'token.json'), 'utf8'));
-const { client_id, client_secret } = credentials.web;
+import { getAuthClient } from './client.js';
 
-const auth = new google.auth.OAuth2(client_id, client_secret, 'http://localhost:8765/oauth/callback');
-auth.setCredentials(token);
-
+const auth = await getAuthClient();
 const drive = google.drive({ version: 'v3', auth });
 
 // ── Drive helpers ─────────────────────────────────────────────────────────────

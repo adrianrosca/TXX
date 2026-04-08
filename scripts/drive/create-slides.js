@@ -5,9 +5,7 @@
 import { google } from 'googleapis';
 import { getAuthClient } from './client.js';
 
-const auth = getAuthClient();
-const slides = google.slides({ version: 'v1', auth });
-const drive  = google.drive({ version: 'v3', auth });
+let slides, drive; // initialized in main()
 
 // ── Palette ──────────────────────────────────────────────────────────────────
 const C = {
@@ -449,6 +447,9 @@ function buildSlide3(slideId) {
 
 async function main() {
   console.log('Creating presentation…');
+  const auth = await getAuthClient();
+  slides = google.slides({ version: 'v1', auth });
+  drive = google.drive({ version: 'v3', auth });
 
   // 1. Create blank presentation
   const pres = await slides.presentations.create({

@@ -6,7 +6,7 @@ import { google } from 'googleapis';
 import { getAuthClient } from './client.js';
 
 const PRES_ID = '1xe9RJZevnefoDxz_hxFyGcy26CcPW0GAh1x_h6hywg0';
-const auth    = getAuthClient();
+const auth    = await getAuthClient();
 const gslides = google.slides({ version: 'v1', auth });
 
 const pt  = n => n * 12700;
